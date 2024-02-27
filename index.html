@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            overflow-y: hidden;
+        }
+
+        .container {
+            width: 100%;
+            height: 100vh;
+        }
+
+        .box {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 400px;
+            height: 400px;
+            margin: 60px auto;
+            border: 1px solid #222;
+            box-shadow: 1px 2px 6px 4px #222;
+        }
+
+        .grade {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input {
+            width: 300px;
+            padding: 10px;
+            margin-top: 5px;
+            border: 2px solid #222;
+        }
+
+        .btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 5px;
+        }
+
+        button {
+            width: 300px;
+            padding: 10px;
+            margin-top: 5px;
+            background-color: #222;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .result {
+            margin-left: 50px;
+            margin-top: 10px;
+        }
+
+        p {
+            margin-top: 5px;
+        }
+
+        #alertUts {
+            color: red;
+            margin-right: 40px;
+        }
+
+        #alertUas {
+            color: red;
+            margin-right: 40px;
+        }
+
+        #average {
+            font-weight: bold;
+            color: crimson;
+        }
+
+        #grade {
+            font-weight: bold;
+            color: crimson;
+        }
+
+        @media screen and (max-width: 500px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .box {
+                width: 300px;
+            }
+
+            input {
+                width: 250px;
+            }
+
+            button {
+                width: 250px;
+
+            }
+
+            .result {
+                margin-left: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="box">
+            <h1 style="text-align: center; margin-bottom: 30px;">Grade Calculator</h1>
+            <div class="grade">
+                <input id="uts" type="number" placeholder="Masukkan nilai uts">
+                <input id="uas" type="number" placeholder="Masukkan nilai uas">
+            </div>
+            <div class="btn">
+                <button onclick="calculateGrade()">Hitung</button>
+                <button onclick="window.location.reload()">Reset</button>
+            </div>
+            <div class="result">
+                <p>Rata-rata: <span id="average"></span></p>
+                <p>Nilai: <span id="grade"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function calculateGrade() {
+            const uts = parseFloat(document.getElementById('uts').value)
+            const uas = parseFloat(document.getElementById('uas').value)
+            const average = document.getElementById('average')
+            const grade = document.getElementById('grade')
+            const rataRata = (uts + uas) / 2
+
+            if (rataRata > 80) {
+                average.innerHTML = rataRata
+                grade.innerHTML = "A"
+            } else if (rataRata > 70) {
+                average.innerHTML = rataRata
+                grade.innerHTML = "B"
+            } else if (rataRata < 70 || uas === "") {
+                average.innerHTML = rataRata
+                grade.innerHTML = "C"
+            } else {
+                return alert("Nilai UTS dan UAS harus diisi!")
+            }
+        }
+    </script>
+</body>
+
+</html>
